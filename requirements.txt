@@ -5,3 +5,5 @@ requests
 pylint
 bandit
 pyyaml
+langchain_openai
+dotenv
