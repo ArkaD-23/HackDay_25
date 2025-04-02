@@ -1,5 +1,5 @@
 from langchain.schema import SystemMessage, HumanMessage
-from model import llm
+from models import llm
 
 def best_practices_review(state):
     code = state["code"]

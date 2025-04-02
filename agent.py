@@ -1,6 +1,5 @@
 import os
 import requests
-from langchain.chat_models import ChatOpenAI
 from langgraph.graph import StateGraph
 from nodes import best_practices_review, readability_review, merge_results
 from tools import static_analysis_tool, security_tool
