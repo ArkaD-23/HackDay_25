@@ -41,10 +41,7 @@ pip install -r requirements.txt
 ```
 
 ### 3️⃣ Set up environment variables
-Create a `.env` file and add your **Azure OpenAI API key**:
-```
-OPENAI_API_KEY=your-secret-api-key
-```
+Create a `.env` file similar to example.env.txt
 
 ### 4️⃣ Run the agent locally
 ```sh
@@ -88,7 +85,4 @@ jobs:
 - Support for JavaScript (ESLint) and other languages.
 - More advanced AI feedback using **LangChain memory**.
 - Customizable PR feedback settings.
-
-## 🤝 Contributing
-Feel free to **fork**, submit PRs, and suggest improvements! 🚀
 
