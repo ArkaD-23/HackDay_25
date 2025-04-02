@@ -4,10 +4,10 @@ from langgraph.graph import StateGraph
 from nodes import best_practices_review, readability_review, merge_results
 from tools import static_analysis_tool, security_tool
 
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+GITHUB_TOKEN = os.getenv("GH_PAT")
 PR_NUMBER = os.getenv("PR_NUMBER")
-REPO_OWNER = os.getenv("GITHUB_REPOSITORY_OWNER")
-REPO_NAME = os.getenv("GITHUB_REPOSITORY").split("/")[-1]
+REPO_OWNER = os.getenv("REPO_OWNER")
+REPO_NAME = os.getenv("REPO_NAME").split("/")[-1]
 
 def fetch_pr_changes():
     url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/pulls/{PR_NUMBER}/files"
