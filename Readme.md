@@ -55,6 +55,48 @@ The **GitHub Actions workflow** (`.github/workflows/code-review.yml`) automatica
 - Uses the AI agent to generate review comments.
 - Posts feedback in the PR discussion.
 
+## 🧠 Agent Graph Workflow
+
+This project uses **LangGraph's `StateGraph`** to define a structured, sequential AI workflow for reviewing code in pull requests. Each step in the workflow analyzes the PR code from different perspectives and feeds its results into the next.
+
+### 🔗 Workflow Structure
+
+The agent uses a **directed graph** of LangGraph nodes, which execute in order to produce a complete, multi-dimensional review. Here's a breakdown of the nodes:
+
+1. **`static_analysis`**  
+   Runs traditional linting tools like `pylint` to catch syntax issues and code smells.
+
+2. **`security_review`**  
+   Uses tools like `bandit` to perform static security analysis on the code.
+
+3. **`best_practices`**  
+   AI-based evaluation of whether the code follows industry best practices (naming conventions, patterns, etc).
+
+4. **`readability_review`**  
+   Evaluates the clarity and maintainability of the code using GPT-4o.
+
+5. **`merge_results`**  
+   Collects feedback from all previous steps and compiles it into a single, cohesive review.
+
+### ⚙️ Graph Construction Flow
+
+```python
+sg = StateGraph(dict)
+sg.add_node("static_analysis", ...)
+sg.add_node("security_review", ...)
+sg.add_node("best_practices", ...)
+sg.add_node("readability_review", ...)
+sg.add_node("merge_results", ...)
+
+sg.set_entry_point("static_analysis")
+sg.add_edge("static_analysis", "security_review")
+sg.add_edge("security_review", "best_practices")
+sg.add_edge("best_practices", "readability_review")
+sg.add_edge("readability_review", "merge_results")
+
+graph = sg.compile()
+
+
 ## 📜 Example GitHub Actions Workflow
 ```yaml
 name: AI Code Review
