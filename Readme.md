@@ -48,13 +48,6 @@ Create a `.env` file similar to example.env.txt
 python agent.py
 ```
 
-## ⚙️ GitHub Actions Integration
-The **GitHub Actions workflow** (`.github/workflows/code-review.yml`) automatically runs on **pull request events**:
-- Fetches PR changes.
-- Runs `pylint` and `bandit` for static analysis.
-- Uses the AI agent to generate review comments.
-- Posts feedback in the PR discussion.
-
 ## 🧠 Agent Graph Workflow
 
 This project uses **LangGraph's `StateGraph`** to define a structured, sequential AI workflow for reviewing code in pull requests. Each step in the workflow analyzes the PR code from different perspectives and feeds its results into the next.
@@ -95,7 +88,14 @@ sg.add_edge("best_practices", "readability_review")
 sg.add_edge("readability_review", "merge_results")
 
 graph = sg.compile()
+```
 
+## ⚙️ GitHub Actions Integration
+The **GitHub Actions workflow** (`.github/workflows/code-review.yml`) automatically runs on **pull request events**:
+- Fetches PR changes.
+- Runs `pylint` and `bandit` for static analysis.
+- Uses the AI agent to generate review comments.
+- Posts feedback in the PR discussion.
 
 ## 📜 Example GitHub Actions Workflow
 ```yaml
